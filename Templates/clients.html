@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>All Clients</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Haircut Type</th>
+            <th>Amount Paid</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for client in clients %}
+        <tr>
+            <td>{{ client.name }}</td>
+            <td>{{ client.haircut_type }}</td>
+            <td>${{ "%.2f"|format(client.amount_paid) }}</td>
+            <td>{{ client.created_at.strftime("%Y-%m-%d %H:%M") }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
