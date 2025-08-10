@@ -61,5 +61,20 @@ def add_client():
 with app.app_context():
     db.create_all()
 
+@app.route("/add_client", methods=["GET", "POST"])
+def add_client():
+    if request.method == "POST":
+        name = request.form["name"]
+        haircut_type = request.form["haircut_type"]
+        amount_paid = request.form["amount_paid"]
+
+        # Just print to the server logs for now
+        print(f"New client: {name}, Haircut: {haircut_type}, Paid: {amount_paid}")
+
+        # Show a confirmation without saving
+        return f"Received: {name}, {haircut_type}, {amount_paid}"
+
+    return render_template("add_client.html")
+
 if __name__ == '__main__':
     app.run(debug=True)
